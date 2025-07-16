@@ -1,4 +1,4 @@
-# --- Optimized db_helper.py ---
+# this file is used for connection with mysql workbench and performing some functions
 import mysql.connector
 
 DB_CONFIG = {
