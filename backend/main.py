@@ -1,3 +1,6 @@
+# This FastAPI app serves as a webhook for Dialogflow to manage a food ordering chatbot.
+# It handles adding, removing, completing, and tracking orders by interacting with a backend database.
+
 from fastapi import FastAPI
 from fastapi import Request
 from fastapi.responses import JSONResponse
