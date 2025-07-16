@@ -1,7 +1,8 @@
 # this file is used for connection with mysql workbench and performing some functions
 import mysql.connector
 
-DB_CONFIG = {
+# making connection with mysql workbench
+DB_CONFIG = {  
     "host": "localhost",
     "user": "root",
     "password": "*******",
@@ -11,6 +12,7 @@ DB_CONFIG = {
 def get_connection():
     return mysql.connector.connect(**DB_CONFIG)
 
+# function for placing an order
 def insert_order_item(food_item, quantity, order_id):
     try:
         cnx = get_connection()
@@ -27,6 +29,7 @@ def insert_order_item(food_item, quantity, order_id):
         print(f"General error: {e}")
         return -1
 
+# function for tracking user order
 def insert_order_tracking(order_id, status):
     cnx = get_connection()
     cursor = cnx.cursor()
@@ -35,6 +38,7 @@ def insert_order_tracking(order_id, status):
     cursor.close()
     cnx.close()
 
+# function to calculate total price of order
 def get_total_order_price(order_id):
     cnx = get_connection()
     cursor = cnx.cursor()
@@ -44,6 +48,7 @@ def get_total_order_price(order_id):
     cnx.close()
     return result
 
+# function to get next order id
 def get_next_order_id():
     cnx = get_connection()
     cursor = cnx.cursor()
@@ -53,6 +58,7 @@ def get_next_order_id():
     cnx.close()
     return 1 if result is None else result + 1
 
+# function to check status of order(delievered/ in transit)
 def get_order_status(order_id):
     try:
         cnx = get_connection()
