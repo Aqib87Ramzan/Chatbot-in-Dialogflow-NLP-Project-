@@ -1,15 +1,14 @@
-
 from fastapi import FastAPI
 from fastapi import Request
 from fastapi.responses import JSONResponse
 import db_helper
 import generic_helper
 
-
 app = FastAPI()
 
 inprogress_orders = {}
 
+# Main endpoint to handle Dialogflow webhook requests and route them based on intent
 @app.post("/")
 async def handle_request(request: Request):
     # Retrieve the JSON data from the request
@@ -31,6 +30,7 @@ async def handle_request(request: Request):
 
     return intent_handler_dict[intent](parameters, session_id)
 
+# Save the current in-progress order to the database
 def save_to_db(order: dict):
     next_order_id = db_helper.get_next_order_id()
 
@@ -45,11 +45,12 @@ def save_to_db(order: dict):
         if rcode == -1:
             return -1
 
-    # Now insert order tracking status
+# Now insert order tracking status
     db_helper.insert_order_tracking(next_order_id, "in progress")
 
     return next_order_id
 
+# Finalize and complete an order, save to database and return confirmation
 def complete_order(parameters: dict, session_id: str):
     if session_id not in inprogress_orders:
         fulfillment_text = "I'm having a trouble finding your order. Sorry! Can you place a new order please?"
@@ -72,7 +73,7 @@ def complete_order(parameters: dict, session_id: str):
         "fulfillmentText": fulfillment_text
     })
 
-
+# Add selected food items to an ongoing order session
 def add_to_order(parameters: dict, session_id: str):
     food_items = parameters["food-item"]
     quantities = parameters["number"]
@@ -96,7 +97,7 @@ def add_to_order(parameters: dict, session_id: str):
         "fulfillmentText": fulfillment_text
     })
 
-
+# Remove selected food items from the current order session
 def remove_from_order(parameters: dict, session_id: str):
     if session_id not in inprogress_orders:
         return JSONResponse(content={
@@ -116,11 +117,12 @@ def remove_from_order(parameters: dict, session_id: str):
             removed_items.append(item)
             del current_order[item]
 
+    fulfillment_text = ""
     if len(removed_items) > 0:
-        fulfillment_text = f'Removed {",".join(removed_items)} from your order!'
+        fulfillment_text += f'Removed {",".join(removed_items)} from your order!'
 
     if len(no_such_items) > 0:
-        fulfillment_text = f' Your current order does not have {",".join(no_such_items)}'
+        fulfillment_text += f' Your current order does not have {",".join(no_such_items)}'
 
     if len(current_order.keys()) == 0:
         fulfillment_text += " Your order is empty!"
@@ -132,6 +134,7 @@ def remove_from_order(parameters: dict, session_id: str):
         "fulfillmentText": fulfillment_text
     })
 
+# Track and return the status of a given order based on order ID
 def track_order(parameters: dict, session_id: str):
     print("Received parameters:", parameters)  # Debug line
 
@@ -151,5 +154,3 @@ def track_order(parameters: dict, session_id: str):
     return JSONResponse(content={
         "fulfillmentText": fulfillment_text
     })
-
-
