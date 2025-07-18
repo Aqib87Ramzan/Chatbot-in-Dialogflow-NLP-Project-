@@ -1,78 +1,46 @@
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+    <header>
+        <nav>
+            <a href="#home">HOME</a> |
+            <a href="#menu">MENU</a> |
+            <a href="#location">LOCATION</a> |
+            <a href="#contactus">CONTACT US</a>
+        </nav>
+    </header>
 
-header {
-    background-color: #ff5733;
-    text-align: center;
-    padding: 20px;
-    color: #fff;
-}
+    <section id="home">
+		<img src="banner.jpg" >
+        <!-- Add images here -->
+    </section>
 
-h1 {
-    margin: 0;
-    padding: 0;
-}
+    <section id="menu">
+        <h2>Our Menu</h2>
+        <div class="grid-container">
+        <img src="menu1.jpg" alt="Menu item 1">
+        <img src="menu2.jpg" alt="Menu item 2">
+        <img src="menu3.jpg" alt="Menu item 3">
+    </div>
+    </section>
 
-nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #fff;
-    transition: color 0.3s ease-in-out;
-}
+    <section id="location">
+        <h2>Location</h2>
+        <p>NUST, H-12</p>
+        <!-- Add map widget here -->
+    </section>
 
-nav a:hover {
-    color: #f0f0f0;
-}
+    <section id="contactus">
+        <h2>Contact Us</h2>
+        <p>Got questions? Want to place an order? Call us at +923317608942 or email us at baksho@gmail.com</p>
+    </section>
+    <iframe width="350" height="430" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/35b7eb48-bb64-4833-8703-64e2bb2c6419"></iframe>
 
-section {
-    margin: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-}
-
-section h2 {
-    color: #ff5733;
-}
-
-footer {
-    background-color: #ff5733;
-    text-align: center;
-    padding: 10px;
-    color: #fff;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-.chat-bot {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    border: none;
-    z-index: 1000; 
-}
-.container {
-    margin: 0 auto;
-    max-width: 1200px; /* or any other value */
-    padding: 0 20px; /* adding 20px of padding */
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-    text-align: center;
-}
-section img {
-    display: block;
-    margin: auto;
-    width: 100%;
-    height: auto;
-}
+    </div>
+</body>
+</html>
