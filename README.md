@@ -8,8 +8,8 @@ Directory structure
 Install these modules
 ======================
 
-pip install mysql-connector
-pip install fastapi[all]
+1) pip install mysql-connector
+2) pip install fastapi[all]
 
 OR just run pip install -r backend/requirements.txt to install both in one shot
 
@@ -28,5 +28,5 @@ NOTE: ngrok can timeout. you need to restart the session if you see session expi
 
 Why need ngrok?
 ================================
-For testing of our dialogflow, http request is not secure, so we need ngrok because of its https request which is secure
+For testing of our dialogflow, http request is not secure, so we need ngrok because of its https request.
 
