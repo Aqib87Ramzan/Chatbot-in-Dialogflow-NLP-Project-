@@ -1,4 +1,5 @@
-# Author: Dhaval Patel. Codebasics YouTube Channel
+For dialogflow, we have to feed it with some phrases to get some automated response like in respose to user's 'Hii', it should say something like 'Greetings, would you like to order seomthing'.
+
 
 Default Welcome Intent
 ======================
