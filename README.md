@@ -1,9 +1,9 @@
 Directory structure
 ===================
-backend: Contains Python FastAPI backend code
-db: contains the dump of the database. you need to import this into your MySQL db by using MySQL workbench tool
-dialogflow_assets: this has training phrases etc. for our intents
-frontend: website code
+1) backend: Contains Python FastAPI backend code
+2) db: contains the dump of the database. you need to import this into your MySQL db by using MySQL workbench tool
+3) dialogflow_assets: this has training phrases etc. for our intents
+4) frontend: website code
 
 Install these modules
 ======================
